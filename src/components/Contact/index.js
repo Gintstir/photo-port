@@ -52,12 +52,15 @@ function ContactForm() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        console.log(formState);
-    }
+        if(!errorMessage) {
+            setFormState({ [e.target.name]: e.target.value })
+            console.log("Form", formState);
+        }
+    };
 
     return (
         <section>
-            <h1>Contact Me</h1>
+            <h1 data-testid="h1tag">Contact Me</h1>
             <form id="contact-form" onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="name">Name:</label>
@@ -76,7 +79,7 @@ function ContactForm() {
                         <p className="error-text">{errorMessage}</p>
                     </div>
                 )}
-                <button type="submit">Submit</button>
+                <button data-testid="button" type="submit">Submit</button>
             </form>
         </section>
     )

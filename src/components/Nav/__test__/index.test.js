@@ -9,7 +9,8 @@ const categories = [
 
 const mockCurrentCategory = jest.fn();
 const mockSetCurrentCategory = jest.fn();
-
+const mockContactSelected = jest.fn();
+const mockSetContactSelected = jest.fn();
 // 1) add the cleanup statement
 
 afterEach(cleanup);
@@ -23,15 +24,19 @@ describe('Nav component', () => {
             categories={categories}
             setCurrentCategory={mockSetCurrentCategory}
             currentCategory={mockCurrentCategory}
+            contactSelected={mockContactSelected}
+            setContactSelected={mockSetContactSelected}
             />);
     
     })
     //snapshot test
-    test('matches snapshot', () => {
+    it('matches snapshot', () => {
         const { asFragment } = render(<Nav
             categories={categories}
             setCurrentCategory={mockSetCurrentCategory}
             currentCategory={mockCurrentCategory}
+            contactSelected={mockContactSelected}
+            setContactSelected={mockSetContactSelected}
             />);
         //asert value comparison
         expect(asFragment()).toMatchSnapshot();
@@ -39,12 +44,14 @@ describe('Nav component', () => {
 })
 
 describe('emoji is visible', () => {
-    test('inserts camera emoji into h2 element', () => {
+    it('inserts camera emoji into h2 element', () => {
         //Arrange
         const { getByLabelText } = render(<Nav
             categories={categories}
             setCurrentCategory={mockSetCurrentCategory}
             currentCategory={mockCurrentCategory}
+            contactSelected={mockContactSelected}
+            setContactSelected={mockSetContactSelected}
             />); 
         //Assert
         expect(getByLabelText('camera')).toHaveTextContent('📸')
@@ -58,6 +65,8 @@ describe('links are visible', () => {
             categories={categories}
             setCurrentCategory={mockSetCurrentCategory}
             currentCategory={mockCurrentCategory}
+            contactSelected={mockContactSelected}
+            setContactSelected={mockSetContactSelected}
             />);
         
         //assert
