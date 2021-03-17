@@ -4,7 +4,15 @@ import About from './components/About';
 import Gallery from './components/Gallery';
 import ContactForm from './components/Contact';
 
+
+
 function App() {
+
+  const [contactSelected, setContactSelected] = useState(false);
+//above we set the initial value of contactSelected to false.  This is to prevent
+//the contact form from showing when a user initially navigated to the homepage.  The Gallery
+//will display instead, which is the first thing we want to be seen.  
+
   const [categories] = useState([
     {
       name: 'commercial',
@@ -23,11 +31,21 @@ function App() {
         categories={categories}
         setCurrentCategory={setCurrentCategory}
         currentCategory={currentCategory}
+        contactSelected={contactSelected}
+        setContactSelected={setContactSelected}
       ></Nav>
       <main>
-        <ContactForm />
+        {/* <ContactForm />
         <Gallery currentCategory={currentCategory}></Gallery>
-        <About></About>
+        <About></About> */}
+        {!contactSelected ? (
+          <>
+            <Gallery currentCategory={currentCategory}></Gallery>
+            <About></About>
+          </>
+        ) : (
+            <ContactForm></ContactForm>
+        )}
         
       </main>
     </div>
