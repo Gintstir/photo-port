@@ -110,7 +110,7 @@ const PhotoList = ({ category }) => {
   const toggleModal = (image, i) => {
     //current photo
     setCurrentPhoto({...image, index: i})
-    setIsModalOpen(true);
+    setIsModalOpen(!isModalOpen);
   }
 
   //because currentPhoto now contains the two critical data points needed for the modal, we can pass
@@ -118,7 +118,9 @@ const PhotoList = ({ category }) => {
 
   return (
     <div>
-      {isModalOpen && <Modal currentPhoto={currentPhoto}/>}
+      {isModalOpen && ( 
+      <Modal currentPhoto={currentPhoto} onClose={toggleModal} />
+      )}
       <div className="flex-row">
         {currentPhotos.map((image, i) => (
           <img
